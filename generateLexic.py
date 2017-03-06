@@ -1,10 +1,3 @@
-"""
-Primer paso:
-
-GENERAR lexic.txt 
-
-"""
-
 lexic = {}
 with open("corpus.txt", "r") as ins:
     for line in ins:
@@ -20,6 +13,8 @@ with open("corpus.txt", "r") as ins:
         else:
             lexic[word] = {}
             lexic[word][tag] = 1   
+
+print "ok"
 
 lexicfile = open("lexic.txt","w") 
 for p in lexic.keys():

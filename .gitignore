@@ -3,6 +3,5 @@
 
 *.iml
 
-*.pdf
 
-*.pptx
+\.DS_Store

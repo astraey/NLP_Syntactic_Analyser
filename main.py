@@ -89,19 +89,20 @@ def Test():
         wordst = linet.split("\t")
         wordst[0] = wordst[0].lower()
         #print wordst
-        for linel in lexic and not found: #hace falta if con booleano por si no la encuentra poner algo rabdom
-            linel = linel.decode("latin_1").encode("UTF-8")
+        for linel in lexic: #hace falta if con booleano por si no la encuentra poner algo rabdom
+            if not found:
+                linel = linel.decode("latin_1").encode("UTF-8")
 
-            linel = linel.replace("\r\n", "")
-            linel = linel.replace('\n', '')
-            wordsl = linel.split("\t")
-            wordsl[0] = wordsl[0].lower()
-            #if count > 1:
-            #    print wordst[0]
-            #    print wordsl[0]
-            if wordst[0] == wordsl[0]:
-                o1.write(wordst[0] + "\t" + wordsl[1] + "\n")
-                found = True
+                linel = linel.replace("\r\n", "")
+                linel = linel.replace('\n', '')
+                wordsl = linel.split("\t")
+                wordsl[0] = wordsl[0].lower()
+                #if count > 1:
+                #    print wordst[0]
+                #    print wordsl[0]
+                if wordst[0] == wordsl[0]:
+                    o1.write(wordst[0] + "\t" + wordsl[1] + "\n")
+                    found = True
         lexic.close()
 
 

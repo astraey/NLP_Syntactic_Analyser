@@ -21,7 +21,7 @@ def main():
         linec = linec.replace("\r\n","")
         linec = linec.replace('\n', '')
         wordsc = linec.split("\t")
-        #print wordsc
+        #print words
         wordsc[0] = wordsc[0].lower()
         if wordsc[0] in lexid:
             if wordsc[1] in lexid[wordsc[0]]:

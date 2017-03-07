@@ -3,16 +3,36 @@ import string
 from collections import namedtuple
 
 
-
 def main():
+
+    #if sys.argv[1] == "-createLexic":
+    if 0 == 0:
+        print "Creating lexic..."
+
+        CreateLexic()
+
+
+        print "The Lexic have been created successfully and stored in lexic.txt"
+    else:
+        print "Invalid argument. Please execute the command: 'python main.py -createLexic' to create the file lexic.txt"
+
+    #if sys.argv[1] == "-test":
+    if 0 == 0:
+        print "Creating test..."
+
+        Test()
+
+        print "The test have been created successfully and stored in o1.txt"
+    else:
+        print "Invalid argument. Please execute the command: 'python main.py -test' to create the file o1.txt"
+
+
+def CreateLexic():
 
     corpus = open("corpus.txt","r")
     lexid = {}
     lexic = open("lexic.txt", "w")
-    test1 = open("test_1.txt", "r")
-    test2 = open("test_2.txt", "r")
-    o1 = open("o1.txt", "w")
-    o2 = open("o2.txt", "w")
+
 
 
     for linec in corpus:
@@ -51,10 +71,16 @@ def main():
 
 
     lexic.close()
-    lexic = open("lexic.txt", "r")
+def Test():
+    test1 = open("test_1.txt", "r")
+    test2 = open("test_2.txt", "r")
+    o1 = open("o1.txt", "w")
+    o2 = open("o2.txt", "w")
+    #lexic = open("lexic.txt", "r")
     count = 0
     for linet in test1:
-
+        found = False
+        lexic = open("lexic.txt", "r")
         count += 1
         linet = linet.decode("latin_1").encode("UTF-8")
 
@@ -63,18 +89,20 @@ def main():
         wordst = linet.split("\t")
         wordst[0] = wordst[0].lower()
         #print wordst
-        for linel in lexic: #hace falta if con booleano por si no la encuentra poner algo rabdom
+        for linel in lexic and not found: #hace falta if con booleano por si no la encuentra poner algo rabdom
             linel = linel.decode("latin_1").encode("UTF-8")
 
             linel = linel.replace("\r\n", "")
             linel = linel.replace('\n', '')
             wordsl = linel.split("\t")
             wordsl[0] = wordsl[0].lower()
-            #print wordst[0]
-            #print wordsl[0]
+            #if count > 1:
+            #    print wordst[0]
+            #    print wordsl[0]
             if wordst[0] == wordsl[0]:
                 o1.write(wordst[0] + "\t" + wordsl[1] + "\n")
-
+                found = True
+        lexic.close()
 
 
 

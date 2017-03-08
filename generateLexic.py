@@ -14,8 +14,6 @@ with open("corpus.txt", "r") as ins:
             lexic[word] = {}
             lexic[word][tag] = 1   
 
-print "ok"
-
 lexicfile = open("lexic.txt","w") 
 for p in lexic.keys():
     for t in lexic[p]:

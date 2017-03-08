@@ -117,11 +117,45 @@ def segonPas():
     Segon pas: Etiquetatge d'un corpus utilitzant un Model del Llenguatge. 
     Per a completar aquesta part de la practica s'ha d'implementar un programa 
     que utilitzant el Model del Llenguatge generat a l'apartat anterior etiqueti 
-    els fitxers test\_1.txt i test\_2.txt
+    els fitxers test_1.txt i test_2.txt
     """
     dic = getLexicDic()
     etiquetatge("test_1.txt",dic)
     etiquetatge("test_2.txt",dic)
+
+
+
+
+def getFileContent(filename):
+
+    sys.stdout.write("[INFO] Leyendo " + filename + "................ ")
+    sys.stdout.flush()
+
+    fileContent = {}
+    with open(filename, "r") as fichero:
+        for linea in fichero:
+            linea = linea.decode("latin_1").encode("UTF-8").split()
+            # linea[0] = word, linea[1] = tag
+            ww = strip_accents( linea[0].lower() )
+            fileContent[ ww ] = linea[1]
+
+    sys.stdout.write("DONE\n")
+    return fileContent
+
+def calcultateTest(numTest):
+
+    text = getFileContent("tagged_test_" + numTest + ".txt")
+    gold_standard = getFileContent("gold_standard_" + numTest + ".txt")
+
+    correctos = 0
+
+    for i in text.keys():
+        if text[i] == gold_standard[i]:
+            correctos += 1
+
+    porcentaje = float(correctos) / float(len(text))
+
+    print "[INFO] Porcentaje test " + numTest + ":  " , round(porcentaje,2) * 100 , "%"
 
 
 def tercerPas():
@@ -130,11 +164,15 @@ def tercerPas():
     Tercer pas: Avaluacio dels resultats El tercer pas consisteix a avaluar els
     resultats del programa. Per a aixo cal escriure un programa que compari els resultats
     del nostre etiquetatge amb l'etiquetatge correcte. Aquests resultats correctes
-    es troben als fitxers gold\_standard\_1.txt i gold\_standard\_2.txt.
+    es troben als fitxers gold_standard_1.txt i gold_standard_2.txt.
     Aquests fitxers son la referencia; si el programa etiquetes totes les paraules del
     text correctament, els resultats coincidirien 100 por cien amb el gold standard. El
     programa ha de comparar els dos resultats i indicar el percentatge de correccio
     """
+    
+    calcultateTest("1")
+    calcultateTest("2")
+
     
 
 if __name__ == "__main__":

@@ -1,4 +1,4 @@
-<h1>Natural Language Processor :ocean:</h1>
+<h1>Natural Language Processing: Syntactic Analyser :ocean:</h1>
 
 <p>A simple program that analyses a text and assigns a tag to every word, referencing a syntactic category.</p> 
 
